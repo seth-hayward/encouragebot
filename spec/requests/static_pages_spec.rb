@@ -2,67 +2,56 @@ require 'spec_helper'
 
 describe "Static pages" do
 
-	let(:full_title) { "encouragebot" }
+	subject { page }
+
+	shared_examples_for "all static pages" do
+		it { should have_selector("h1", text: heading) }
+		it { should have_selector("title", text: full_title(page_title)) }		
+	end
 
 	describe "Home page" do
+		before { visit root_path }
+		let(:heading) { 'Encourage Bot' }
+		let(:page_title) { '' }
 
-		it "should have the content 'Encourage Bot'" do
-			visit '/static_pages/home'
-			page.should have_content('Encourage Bot')
-		end
-
-		it "should have the right title" do
-			visit '/static_pages/home'
-			page.should have_selector("title", text: "#{full_title}")
-		end
-
-		it "should not have a custom page title" do
-			visit '/static_pages/home'
-			page.should_not have_selector("title", text: "#{full_title} - home")
-		end
-
+		it { should_not have_selector("title", text: full_title('home')) }
+		it_should_behave_like "all static pages"
 	end
 
 	describe "Help page" do
-
-		it "should have the content 'Help'" do
-			visit '/static_pages/help'
-			page.should have_content('Help')
-		end
-
-		it "should have the right title" do
-			visit '/static_pages/help'
-			page.should have_selector("title", text: "#{full_title} - help")
-		end
-
+		before { visit help_path }
+		let(:heading) { 'Help' }
+		let(:page_title) { 'help' }
+		it_should_behave_like "all static pages"
 	end
 
 	describe "About page" do
-
-		it "should have the content 'About'" do
-			visit '/static_pages/about'
-			page.should have_content('About')
-		end
-
-		it "should have the right title" do
-			visit '/static_pages/about'
-			page.should have_selector("title", text: "#{full_title} - about")
-		end
-
+		before { visit about_path }
+		let(:heading) { 'About' }
+		let(:page_title) { 'about' }
+		it_should_behave_like "all static pages"
 	end
 
 	describe "Contact page" do
+		before { visit contact_path }
+		let(:heading) { 'Contact' }
+		let(:page_title) { 'contact' }
+		it_should_behave_like "all static pages"
+	end
 
-		it "should have the content 'Contact" do
-			visit '/static_pages/contact'
-			page.should have_content('Contact')
-		end
-
-		it "should have the right title" do
-			visit '/static_pages/contact'
-			page.should have_selector('title', text: "#{full_title} - contact")
-		end
-
+	it "should have the right links on the layout" do
+		visit root_path
+		click_link "About"
+		page.should have_selector 'title', text: full_title('about')
+		click_link "Help"
+		page.should have_selector 'title', text: full_title('help')
+		click_link "Contact"
+		page.should have_selector 'title', text: full_title('contact')
+		click_link "Home"
+		click_link "Try it, free!"
+		page.should have_selector 'title', text: full_title('sign up')
+		click_link "encourage bot"
+		page.should have_selector 'title', text: full_title('')
 	end
 
 end
