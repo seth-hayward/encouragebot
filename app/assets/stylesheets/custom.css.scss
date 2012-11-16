@@ -1,5 +1,13 @@
 @import "bootstrap";
 
+/* 
+//
+// Color scheme: http://colorschemedesigner.com/#3z31T--IRw0w0 
+//
+*/
+
+// $secondaryColorB5: #FF9E73
+
 /* universal */
 
 html {
@@ -70,4 +78,35 @@ p {
 #logo:hover {
 	color: #FFDD73;
 	text-decoration: none;
+}
+
+/* footer */
+
+footer {
+	margin-top: 45px;
+	padding-top: 5px;
+	border-top: 1px solid #FF9E73; //$secondaryColorB5;
+	color: #999;
+}
+
+footer a {
+	color: #555;	
+}
+
+footer a:hover {
+	color: #222;
+}
+
+footer small {
+	float: left;
+}
+
+footer ul {
+	float: right;
+	list-style: none;
+}
+
+footer ul li {
+	float: left;
+	margin-left: 10px;
 }
