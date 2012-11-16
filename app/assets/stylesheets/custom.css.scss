@@ -6,7 +6,18 @@
 //
 */
 
-// $secondaryColorB5: #FF9E73
+/* variables, mixins, etc */
+
+$grayDarkest: #222;
+$grayDarker: #555;
+$grayMediumLight: #eaeaea;
+
+/* yellows */
+$secondaryColorA1: #FFC200;
+$secondaryColorA5: #FFDD73;
+
+/* orange */
+$secondaryColorB5: #FF9E73;
 
 /* universal */
 
@@ -28,10 +39,9 @@ textarea {
 
 .center {
 	text-align: center;
-}
-
-.center h1 {
-	margin-bottom: 10px;
+	h1 {
+		margin-bottom: 10px;
+	}
 }
 
 /* typography */
@@ -53,7 +63,7 @@ h2 {
 	margin-bottom: 30px;
 	text-align: center;
 	font-weight: normal;
-	color: #999;
+	color: $grayLight;
 }
 
 p {
@@ -67,17 +77,16 @@ p {
 	float: left;
 	margin-right: 10px;
 	font-size: 1.7em;
-	color: #FFC200;
+	color: $secondaryColorA1;
 	text-transform: uppercase;
 	letter-spacing: -1px;
 	padding-top: 9px;
 	font-weight: bold;
 	line-height: 1;	
-}
-
-#logo:hover {
-	color: #FFDD73;
-	text-decoration: none;
+	&:hover {
+		color: $secondaryColorA5;
+		text-decoration: none;
+	}
 }
 
 /* footer */
@@ -85,28 +94,23 @@ p {
 footer {
 	margin-top: 45px;
 	padding-top: 5px;
-	border-top: 1px solid #FF9E73; //$secondaryColorB5;
-	color: #999;
-}
-
-footer a {
-	color: #555;	
-}
-
-footer a:hover {
-	color: #222;
-}
-
-footer small {
-	float: left;
-}
-
-footer ul {
-	float: right;
-	list-style: none;
-}
-
-footer ul li {
-	float: left;
-	margin-left: 10px;
+	border-top: 1px solid $secondaryColorB5;
+	color: $grayLight;
+	a {
+		color: $grayDarker;
+		&:hover {
+			color: $grayDarkest;
+		}	
+	}
+	small {
+		float: left;
+	}
+	ul {
+		float: right;
+		list-style: none;
+		li {
+			float: left;
+			margin-left: 10px;
+		}
+	}
 }
