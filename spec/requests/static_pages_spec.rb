@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Static pages" do
 
-	let(:full_title) { "encouragebot -" }
+	let(:full_title) { "encouragebot" }
 
 	describe "Home page" do
 
@@ -13,7 +13,12 @@ describe "Static pages" do
 
 		it "should have the right title" do
 			visit '/static_pages/home'
-			page.should have_selector("title", text: "#{full_title} home")
+			page.should have_selector("title", text: "#{full_title}")
+		end
+
+		it "should not have a custom page title" do
+			visit '/static_pages/home'
+			page.should_not have_selector("title", text: "#{full_title} - home")
 		end
 
 	end
@@ -27,7 +32,7 @@ describe "Static pages" do
 
 		it "should have the right title" do
 			visit '/static_pages/help'
-			page.should have_selector("title", text: "#{full_title} help")
+			page.should have_selector("title", text: "#{full_title} - help")
 		end
 
 	end
@@ -41,7 +46,7 @@ describe "Static pages" do
 
 		it "should have the right title" do
 			visit '/static_pages/about'
-			page.should have_selector("title", text: "#{full_title} about")
+			page.should have_selector("title", text: "#{full_title} - about")
 		end
 
 	end
@@ -55,7 +60,7 @@ describe "Static pages" do
 
 		it "should have the right title" do
 			visit '/static_pages/contact'
-			page.should have_selector('title', text: "#{full_title} contact")
+			page.should have_selector('title', text: "#{full_title} - contact")
 		end
 
 	end
