@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121116215425) do
+ActiveRecord::Schema.define(:version => 20121117093822) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "password_digest"
     t.string   "remember_token"
+    t.integer  "user_type",       :default => 7
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
