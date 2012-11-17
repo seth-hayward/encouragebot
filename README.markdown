@@ -4,7 +4,36 @@ encourage bot
 An app to help you achieve your goals.
 --------------------------------------
 
+### Overview
+
+I have started this project as a way to learn and demonstrate my ability in Ruby on Rails. Ultimately, it is a project designed to help people accomplish a goal (such as losing weight, increasing cardiovascular performance, increasing anaerobic performance, quitting smoking or drinking, or reading more technical books.)
+
+The basic premise is that this website will contact you -- via email, via text message, or even via a phone call -- and check in on your goal progress. The idea is that this "bot" will help remind you of your goal, help collect information about your progress, and (hopefully) encourage you towards your goal.
+
+As it is a site dedicated primarily to helping people, it's not quite a business. However I do have a few ideas for business models -- such as a "gambling" mode where the user would pay a fee up front ($20), and then if they succeed in their goal (i.e. they lose the weight over a two week period) then they get the fee back (maybe even the fee plus $5). Otherwise the fee stays with the website. However, these models are secondary to the purpose of the website -- and only serve as a chance to develop some payment integration code as well. The goal here is not to make money.
+
 This is a work in progress, please excuse the dust.
 
 - Final site will be located at: http://www.encouragebot.com
 - Alpha and "in development" site is located at: http://encouragebot.herokuapp.com
+
+### Cloning
+
+If you would like to clone the repo, please feel free to do so and let me know if you have any issues. Currently the config/database.yml file is not included in the repo as it contains sensitive database login information. I have provided the config/database/yml.example file (basic database.yml provided by `rails new`) -- you can rename this to database.yml and run `bundle exec rake db:migrate`.
+
+### Logistics
+
+Currently the application is hosted at both Heroku and Bluehost.com. My infrastructure demands for this application are:
+
+1. Speed
+2. Low cost
+
+Bluehost offers a service that is approximately $75/year for a shared host capable of running a Ruby on Rails application. After evaluating a few shared hosts, it seems like they have the best offering. Despite being the best, I have run into numerous issues getting my application running. Fortunately, it is now working -- and I have the advantage of using their Postgre database server.
+
+Heroku seems to be the host of choice for all Ruby on Rails applications. It is very, very easy to get up and running -- and performance is actually very, very good. My main issues involve price -- beyond their free offering, you can expect about $64/month to run an application with 1 web dyno, 1 worker dyno, SSL, and 10M rows in Postgre.
+
+### History / Milestones
+
+- November 4th, 2012. Purchased Bluehost account. Began learning Ruby.
+- November 14th, 2012. Finished reading Ruby on Rails Tutorial (http://www.railstutorial.org ). Sample application and all exercises completed.
+- November 15th, 2012. First commit on Encourage Bot. Began re-reading Ruby on Rails Tutorial, using sample application as a base set of code. Promised myself I would not play Starcraft 2 until I released a MVP (http://en.wikipedia.org/wiki/Minimum_viable_product ). 
