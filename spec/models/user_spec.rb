@@ -124,4 +124,12 @@ describe User do
 		before { @user.save }
 		its(:remember_token) { should_not be_blank }
 	end	
+
+	describe "accessible attributes" do
+		it "should not allow access to user_id" do
+			expect do
+				User.new(user_type: 100)
+			end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
+		end
+	end
 end
