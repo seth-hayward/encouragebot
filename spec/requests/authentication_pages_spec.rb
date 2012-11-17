@@ -38,6 +38,8 @@ describe "Authentication" do
 			describe "followed by signout" do
 				before { click_link "Sign out" }
 				it { should have_link('Sign in') }
+				it { should_not have_link('Profile', href: user_path(user)) }
+				it { should_not have_link('Settings', href: edit_user_path(user)) } 				
 			end
 		end
 	end
@@ -92,9 +94,30 @@ describe "Authentication" do
 					it "should render the desired protected page" do
 						page.should have_selector('title', text: 'Edit user')
 					end
+
+					describe "when signing in again" do
+						before do
+							sign_in user
+						end
+
+						it "should render the default (profile) page" do
+							page.should have_selector('title', text: user.name)
+						end
+					end
 				end
 			end
+		end
 
+		describe "as non-admin user" do
+			let(:user) { FactoryGirl.create(:user) }
+			let(:non_admin) { FactoryGirl.create(:user) }
+
+			before { sign_in non_admin }
+
+			describe "submitting a DELETE request to the Users#destroy action" do
+				before { delete user_path(user) }
+				specify { response.should redirect_to(root_path) }
+			end
 		end
 	end
 end
