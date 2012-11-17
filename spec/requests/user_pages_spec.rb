@@ -52,6 +52,12 @@ describe "User pages" do
 				end
 
 				it { should_not have_link('delete', href: user_path(admin)) }
+
+				describe "it should not allow DELETE from curl" do
+					before { delete user_path(admin) }
+					specify { response.should redirect_to(root_path) }
+				end
+
 			end
 		end
 	end
@@ -86,7 +92,7 @@ describe "User pages" do
       	before { click_button submit }
 
       	it { should have_selector('title', text: 'sign up') }
-      	it { should have_selector('div#error_explanation') }
+      	it { should have_error_message('') }
       end
     end
 
@@ -111,6 +117,25 @@ describe "User pages" do
       	it { should have_link('Sign out') }
 	    end
     end
+
+    describe "while signed in and visit create page" do
+    	let(:user) { FactoryGirl.create(:user) }
+    	before do
+	    	sign_in user
+	    	get signup_path
+    	end
+			specify { response.should redirect_to(root_path) }    	
+    end
+
+    describe "while signed in and PUT object" do
+    	let(:user) { FactoryGirl.create(:user) }
+    	before do
+    		sign_in user
+    		put signup_path(user)
+    	end
+			specify { response.should redirect_to(root_path) }    	
+    end
+
   end
 
   describe "edit" do
@@ -128,7 +153,7 @@ describe "User pages" do
   		describe "with invalid information" do
   			before { click_button "Save changes" }
 
-  			it { should have_content('error') }
+  			it { should have_error_message('') }
   		end
   	end
 
