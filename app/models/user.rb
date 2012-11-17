@@ -1,3 +1,5 @@
+require 'user_type'
+
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
@@ -12,6 +14,9 @@ class User < ActiveRecord::Base
   									uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+
+  # active_enum gem
+  enumerate :user_type, :with => UserType
 
   private
 
