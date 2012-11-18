@@ -203,6 +203,8 @@ input, textarea, select, .uneditable-input {
 }
 .timestamp {
 	color: $grayLight;
+	float: right;
+	clear: both;
 }
 .gravatar {
 	float: left;

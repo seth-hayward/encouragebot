@@ -10,6 +10,9 @@ describe "Goal pages" do
 	describe "goal creation" do 
 		before { visit new_goal_path }
 
+		it { should have_selector('title', text: 'Add new goal') }
+		it { should have_selector('h1', text: 'Add new goal') }
+
 		describe "with invalid information" do
 
 			it "should not create a goal" do
