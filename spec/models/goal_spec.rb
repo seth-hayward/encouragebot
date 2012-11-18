@@ -21,6 +21,16 @@ describe Goal do
 		it { should_not be_valid }
 	end
 
+	describe "with blank title" do
+		before { @goal.title = " " }
+		it { should_not be_valid }
+	end
+
+	describe "with a title that is too long" do
+		before { @goal.title = "a" * 256 }
+		it { should_not be_valid }
+	end
+
 	describe "accessible attributes" do
 		it "should not allow access to user_id" do
 			expect do

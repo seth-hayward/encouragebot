@@ -149,5 +149,13 @@ describe User do
 			@user.goals.should == [newer_goal, older_goal]
 		end
 
+		it "should destroy associated goals" do
+			goals = @user.goals
+			@user.destroy
+			goals.each do |goal|
+				Goal.find_by_id(goal.id).should be_nil
+			end
+		end
 	end
+	
 end
