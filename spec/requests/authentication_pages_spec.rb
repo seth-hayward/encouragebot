@@ -86,7 +86,7 @@ describe "Authentication" do
 					before do
 						goal = FactoryGirl.create(:goal)
 						goal.title = "LOL hacked"
-						put edit_goal_path(goal)
+						put goal_path(goal)
 					end
 
 					specify { response.should redirect_to(signin_path) }
