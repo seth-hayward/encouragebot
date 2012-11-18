@@ -66,6 +66,38 @@ describe "Authentication" do
 					end
 			end
 
+			describe "in the Goals controller" do
+
+				describe "submitting to the create action" do
+					before { post goals_path }
+					specify { response.should redirect_to(signin_path) }
+				end
+
+				describe "submitting to the destroy action" do
+					before do
+						goal = FactoryGirl.create(:goal)
+						delete goal_path(goal)
+					end
+
+					specify { response.should redirect_to(signin_path) }
+				end
+
+				describe "submitting to the edit action" do
+					before do
+						goal = FactoryGirl.create(:goal)
+						goal.title = "LOL hacked"
+						put edit_goal_path(goal)
+					end
+
+					specify { response.should redirect_to(signin_path) }
+				end
+
+				describe "visiting the goals controller" do
+					before { get goals_path }
+					specify { response.should redirect_to(signin_path) }
+				end
+			end
+
 			describe "as wrong user" do
 				let(:user) { FactoryGirl.create(:user) }
 				let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
