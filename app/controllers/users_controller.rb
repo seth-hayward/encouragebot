@@ -59,25 +59,10 @@ class UsersController < ApplicationController
 
 	private
 
-		def signed_in_user
-				unless signed_in?
-					store_location
-					redirect_to signin_path, notice: "Please sign in."
-				end
-		end
-
 		def signed_in_user_disallowed
 			if signed_in?
 				redirect_to root_path, notice: "You already have an account."
 			end
 		end
 
-		def correct_user
-			@user = User.find(params[:id])
-			redirect_to(root_path) unless current_user?(@user)
-		end
-
-		def admin_user
-			redirect_to(root_path) unless current_user.user_type?(:admin)
-		end
 end
