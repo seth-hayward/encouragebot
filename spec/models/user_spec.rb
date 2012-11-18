@@ -17,6 +17,7 @@ describe User do
 	it { should respond_to(:remember_token) }
 	it { should respond_to(:user_type) }
 	it { should respond_to(:authenticate) }
+	it { should respond_to(:goals) }
 
 	it { should be_valid }
 
