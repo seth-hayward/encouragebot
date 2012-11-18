@@ -133,4 +133,21 @@ describe User do
 			end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
 		end
 	end
+
+	describe "goal associations" do
+
+		before { @user.save }
+		let!(:older_goal) do 
+			FactoryGirl.create(:goal, user: @user, created_at: 1.day.ago)			
+		end
+
+		let!(:newer_goal) do
+			FactoryGirl.create(:goal, user: @user, created_at: 1.hour.ago)
+		end
+
+		it "should have the right goals in the right order (newer goals first)" do
+			@user.goals.should == [newer_goal, older_goal]
+		end
+
+	end
 end
