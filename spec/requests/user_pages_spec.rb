@@ -71,10 +71,20 @@ describe "User pages" do
 
 	describe "profile page" do
 		let(:user) { FactoryGirl.create(:user) }
+		let!(:g1) { FactoryGirl.create(:goal, user: user, title: "FooWeAintGotTimeForThat") }
+		let!(:g2) { FactoryGirl.create(:goal, user: user, title: "BarBarBarBaRam") }
+
 		before { visit user_path(user) }
+
 		let(:heading) { user.name }
 		let(:page_title) { user.name }
 		it_should_behave_like "all user pages"
+
+		describe "goals" do
+			it { should have_content(g1.title) }
+			it { should have_content(g2.title) }
+			it { should have_selector('h3', text: pluralize(user.goals.count, "goals")) }
+		end	
 	end
 
 	describe "signup" do
