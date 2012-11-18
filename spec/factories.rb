@@ -9,4 +9,9 @@ FactoryGirl.define do
 			user_type 100
 		end
 	end
+
+	factory :goal do
+		title	"Lorem ipsum"
+		user
+	end
 end
