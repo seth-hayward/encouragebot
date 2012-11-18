@@ -17,6 +17,7 @@ describe User do
 	it { should respond_to(:remember_token) }
 	it { should respond_to(:user_type) }
 	it { should respond_to(:authenticate) }
+	it { should respond_to(:goals) }
 
 	it { should be_valid }
 
@@ -132,4 +133,29 @@ describe User do
 			end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
 		end
 	end
+
+	describe "goal associations" do
+
+		before { @user.save }
+		let!(:older_goal) do 
+			FactoryGirl.create(:goal, user: @user, created_at: 1.day.ago)			
+		end
+
+		let!(:newer_goal) do
+			FactoryGirl.create(:goal, user: @user, created_at: 1.hour.ago)
+		end
+
+		it "should have the right goals in the right order (newer goals first)" do
+			@user.goals.should == [newer_goal, older_goal]
+		end
+
+		it "should destroy associated goals" do
+			goals = @user.goals
+			@user.destroy
+			goals.each do |goal|
+				Goal.find_by_id(goal.id).should be_nil
+			end
+		end
+	end
+	
 end

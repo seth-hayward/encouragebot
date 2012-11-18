@@ -1,7 +1,17 @@
-<% provide(:title, '') %>
-<div class="center hero-unit">
-	<h1>Welcome to Encourage Bot</h1>
-	<h2>An app dedicated to helping people achieve their goals.</h2>
-	<%= link_to "Try it, free!", signup_path, class: "btn btn-large btn-primary" %>	
-</div>
+<% if signed_in? %>
+	<div class="row">
+		<aside class="span4">
+			<section>
+				<%= render 'shared/user_info' %>
+			</section>
+		</aside>
+	</div>
+<% else %>
+	<div class="center hero-unit">
+		<h1>Welcome to Encourage Bot</h1>
+		<h2>An app dedicated to helping people achieve their goals.</h2>
+		<%= link_to "Try it, free!", signup_path, class: "btn btn-large btn-primary" %>	
+	</div>
+<% end %>
+
 
