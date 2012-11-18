@@ -1,0 +1,16 @@
+<% provide(:title, 'New goal') %>
+<h1>Add new goal</h1>
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@goal) do |f| %>
+
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<%= f.label :title %>
+			<%= f.text_field :title %>
+
+			<%= f.submit "Save goal" , class: "btn btn-large btn-primary" %>
+
+		<% end %>
+	</div>
+</div>

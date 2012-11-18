@@ -18,7 +18,7 @@ describe "Goal pages" do
 
 			describe "error messages" do
 				before { click_button "Save goal" }
-				it { should have_error_messages('') }
+				it { should have_error_message('') }
 			end			
 		end
 
@@ -26,7 +26,7 @@ describe "Goal pages" do
 
 			before { fill_in 'goal_title', with: "Lorem ipsum" }
 			it "should create a goal" do
-				expect { click_button "Post" }.should change(Goal, :count).by(1)
+				expect { click_button "Save goal" }.should change(Goal, :count).by(1)
 			end
 		end
 	end

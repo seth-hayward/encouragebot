@@ -5,6 +5,7 @@ class GoalsController < ApplicationController
 	end
 
 	def new
+		@goal = current_user.goals.build if signed_in?
 	end
 
 	def create
@@ -13,7 +14,7 @@ class GoalsController < ApplicationController
 			flash[:success] = "Goal created! Great work."
 			redirect_to root_path
 		else
-			render 'static_pages/home'
+			render 'new'
 		end
 	end
 
