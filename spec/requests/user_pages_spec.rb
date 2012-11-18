@@ -71,10 +71,14 @@ describe "User pages" do
 
 	describe "profile page" do
 		let(:user) { FactoryGirl.create(:user) }
+		let(:another_user) { FactoryGirl.create(:user, email: "lockout@gmail.com") }		
 		let!(:g1) { FactoryGirl.create(:goal, user: user, title: "FooWeAintGotTimeForThat") }
 		let!(:g2) { FactoryGirl.create(:goal, user: user, title: "BarBarBarBaRam") }
 
-		before { visit user_path(user) }
+		before do 
+			sign_in user
+			visit user_path(user)
+		end
 
 		let(:heading) { user.name }
 		let(:page_title) { user.name }
@@ -85,6 +89,12 @@ describe "User pages" do
 			it { should have_content(g2.title) }
 			it { should have_selector('h3', text: pluralize(user.goals.count, "goals")) }
 		end	
+
+		describe "should not allow access to another user's profile" do
+			before { get user_path(another_user) }
+			specify { response.should redirect_to(root_path) }
+		end
+
 	end
 
 	describe "signup" do
