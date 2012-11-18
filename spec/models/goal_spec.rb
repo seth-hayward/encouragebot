@@ -11,6 +11,7 @@ describe Goal do
 
 	it { should respond_to(:title) }
 	it { should respond_to(:user_id) }
+	it { should respond_to(:status) }
 	it { should respond_to(:user) }
 	its(:user) { should == user }
 
