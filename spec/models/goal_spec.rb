@@ -40,4 +40,21 @@ describe Goal do
 			end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
 		end
 	end
+
+	describe "update associations" do
+
+		before { @goal.save }
+		let!(:older_update) do
+			FactoryGirl.create(:update, goal: @goal, created_at: 1.day.ago)			
+		end
+		let!(:newer_update) do
+			FactoryGirl.create(:update, goal: @goal, created_at: 1.hour.ago)
+		end
+
+		it "should have the right updates in descending order" do
+			@goal.updates.should == [newer_update, older_update]
+		end
+
+	end
+
 end
