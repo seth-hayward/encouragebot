@@ -1,0 +1,6 @@
+<%= form_for(@update) do |f| %>
+	<%= f.label :value %>
+	<%= f.text_field :value %>
+	<%= hidden_field_tag 'goal_id', @goal.id %>
+	<%= f.submit "Add update", class: "btn btn-large btn-primary" %>
+<% end %>

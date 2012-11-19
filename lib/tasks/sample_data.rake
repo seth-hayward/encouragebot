@@ -16,7 +16,8 @@ namespace :db do
 									 email: email,
 									 password: password,
 									 password_confirmation: password)
-			new_guy.goals.create!(title: Faker::Lorem.sentence(3))
+			new_goal = new_guy.goals.create!(title: Faker::Lorem.sentence(3))
+			new_goal.updates.create!(value: n)
 		end
 	end	
 end

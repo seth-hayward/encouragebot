@@ -4,6 +4,16 @@ class GoalsController < ApplicationController
 	def index
 	end
 
+	def show
+		begin		
+	  	@goal = current_user.goals.find(params[:id])
+	  	@update = @goal.updates.new
+	  rescue
+	  	flash[:error] = "We couldn't find that goal."
+	  	redirect_to root_path
+	  end
+	end
+
 	def new
 		@goal = current_user.goals.build if signed_in?
 	end

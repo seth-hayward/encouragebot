@@ -1,5 +1,5 @@
 <li>
-	<span class="title"><%= goal.title %></span>
+	<span class="title"><%= link_to goal.title, goal_path(goal) %></span>
 	<span class="timestamp">
 		Started <%= time_ago_in_words(goal.created_at) %> ago.
 	</span>

@@ -2,6 +2,7 @@ Encouragebot::Application.routes.draw do
   resources :users
   resources :goals  
   resources :sessions, only: [:new, :create, :destroy]
+  resources :updates
 
   root to: 'static_pages#home'
 
