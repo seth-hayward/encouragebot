@@ -28,4 +28,9 @@ describe Update do
 		before { @update.goal_id = nil }
 		it { should_not be_valid }
 	end
+
+	describe "with alphanumeric content" do
+		before { @update.value = "lovely" }
+		it { should_not be_valid }
+	end
 end
