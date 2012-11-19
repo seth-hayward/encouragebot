@@ -1,8 +1,9 @@
 <% if update.valid? %>
-	<li>
+	<li id="<%= update.id %>">
 		<span class="title"><%= update.value %></span>
 		<span class="timestamp">
 			Added <%= time_ago_in_words(update.created_at) %> ago.
+			<%= link_to "delete", update, method: :delete, confirm: "Delete update?" %>
 		</span>
 	</li>
 <% end %>
