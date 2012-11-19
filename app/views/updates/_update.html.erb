@@ -1,0 +1,8 @@
+<% if update.valid? %>
+	<li>
+		<span class="title"><%= update.value %></span>
+		<span class="timestamp">
+			Added <%= time_ago_in_words(update.created_at) %> ago.
+		</span>
+	</li>
+<% end %>

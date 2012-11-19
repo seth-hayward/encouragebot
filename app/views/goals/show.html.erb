@@ -4,5 +4,14 @@
 	<div class="span6 offset3">
 		<%= render('shared/error_messages', object: @update) %>
 		<%= render('updates/add_update', f: @update, goal: @goal) %>
+
+		<% if @goal.updates.any? %>
+			<ol class="updates">		
+				<% @goal.updates.each do |g| %>
+					<%= render g %>
+				<% end %>
+			</ol>
+		<% end %>
+
 	</div>
 </div>

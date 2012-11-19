@@ -7,7 +7,7 @@ class GoalsController < ApplicationController
 	def show
 		begin		
 	  	@goal = current_user.goals.find(params[:id])
-	  	@update = @goal.updates.build
+	  	@update = @goal.updates.new
 	  rescue
 	  	flash[:error] = "We couldn't find that goal."
 	  	redirect_to root_path
