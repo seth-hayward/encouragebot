@@ -51,6 +51,15 @@ describe "Goal pages" do
 			expect { response.should redirect_to(root_path) }		
 		end
 
+		describe "update creation" do
+			before { visit goal_path(goal) }
+
+			describe "invalid updates" do
+				before { click_button "Add update" }
+				it { should have_error_message('') }
+			end
+		end
+
 	end
 
 end

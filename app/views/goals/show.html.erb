@@ -2,6 +2,7 @@
 <h1><%= @goal.title %></h1>
 <div class="row">
 	<div class="span6 offset3">
-		<%= render('updates/add_update', f: @update) %>
+		<%= render('shared/error_messages', object: @update) %>
+		<%= render('updates/add_update', f: @update, goal: @goal) %>
 	</div>
 </div>
