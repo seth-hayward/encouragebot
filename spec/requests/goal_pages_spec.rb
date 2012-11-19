@@ -5,7 +5,10 @@ describe "Goal pages" do
 	subject { page }
 
 	let(:user) { FactoryGirl.create(:user) }
-	before { sign_in user }
+	let(:goal) { user.goals.create(title: "Lose weight") }
+	before do  
+		sign_in user
+	end
 
 	describe "goal creation" do 
 		before { visit new_goal_path }
@@ -33,4 +36,13 @@ describe "Goal pages" do
 			end
 		end
 	end
+
+	describe "individual goal page" do
+		before { visit goal_path(goal) }
+
+		it { should have_selector('title', text: goal.title) }
+		it { should have_selector('h1', text: goal.title) }
+		
+	end
+
 end

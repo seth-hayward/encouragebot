@@ -4,6 +4,10 @@ class GoalsController < ApplicationController
 	def index
 	end
 
+	def show
+		@goal = current_user.goals.first
+	end
+
 	def new
 		@goal = current_user.goals.build if signed_in?
 	end
