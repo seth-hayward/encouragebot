@@ -13,4 +13,11 @@ class UpdatesController < ApplicationController
 		end
 	end
 
+	def destroy
+		@fated_update = Update.find(params[:id])
+		@goal = current_user.goals.find(@fated_update.goal_id)
+		@fated_update.destroy
+		redirect_to goal_path(@goal)
+	end
+
 end
