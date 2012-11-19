@@ -38,11 +38,19 @@ describe "Goal pages" do
 	end
 
 	describe "individual goal page" do
+		let(:another_user) { FactoryGirl.create(:user, email: "oblivious@gmail.com") }
+		let(:another_goal) { another_user.goals.create(title: "Be more aware") }
+
 		before { visit goal_path(goal) }
 
 		it { should have_selector('title', text: goal.title) }
 		it { should have_selector('h1', text: goal.title) }
-		
+
+		it "it should not be accessible by another user" do
+			get goal_path(another_goal)
+			expect { response.should redirect_to(root_path) }		
+		end
+
 	end
 
 end
