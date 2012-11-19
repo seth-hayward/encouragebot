@@ -5,7 +5,7 @@ class GoalsController < ApplicationController
 	end
 
 	def show
-		@goal = current_user.goals.first
+  	@goal = current_user.goals.find(params[:id])
 	end
 
 	def new
