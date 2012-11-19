@@ -1,2 +1,7 @@
 <% provide(:title, @goal.title) %>
 <h1><%= @goal.title %></h1>
+<div class="row">
+	<div class="span6 offset3">
+		<%= render('updates/add_update', f: @update) %>
+	</div>
+</div>
