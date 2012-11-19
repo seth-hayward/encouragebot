@@ -14,4 +14,9 @@ FactoryGirl.define do
 		title	"Lorem ipsum"
 		user
 	end
+
+	factory :update do
+		value 15
+		goal
+	end
 end
