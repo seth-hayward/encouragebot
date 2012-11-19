@@ -6,7 +6,7 @@ describe "Goal pages" do
 
 	let(:user) { FactoryGirl.create(:user) }
 	let(:goal) { user.goals.create(title: "Lose weight") }
-	let(:initial_update) { goal.updates.create(value: 100.5) }
+	let!(:initial_update) { goal.updates.create(value: 100.5) }
 
 	before do  
 		sign_in user
@@ -47,7 +47,7 @@ describe "Goal pages" do
 
 		it { should have_selector('title', text: goal.title) }
 		it { should have_selector('h1', text: goal.title) }
-		it { should have_selector('li', text: "#{initial_update.value}") }
+		it { should have_selector("li##{initial_update.id}", text: "#{initial_update.value}") }
 
 		it "it should not be accessible by another user" do
 			get goal_path(another_goal)
@@ -67,7 +67,14 @@ describe "Goal pages" do
 					fill_in "Value", 	with: "5"
 				end
 				it "should create an update" do 
-					expect { click_button "Add update" }.should change(Update, :count)
+					expect { click_button "Add update" }.should change(Update, :count).by(1)
+				end				
+			end
+
+			describe "deleting updates" do
+
+				it "should remove the update" do
+					expect { click_link("delete") }.should change(Update, :count).by(-1)
 				end
 
 			end
