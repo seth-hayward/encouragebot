@@ -6,6 +6,7 @@ describe "Goal pages" do
 
 	let(:user) { FactoryGirl.create(:user) }
 	let(:goal) { user.goals.create(title: "Lose weight") }
+	let!(:hidden_goal) { user.goals.create(title: "Super Secret goal that was hidden", status: 0)}
 	let!(:initial_update) { goal.updates.create(value: 100.5) }
 
 	before do  
@@ -80,6 +81,28 @@ describe "Goal pages" do
 			end
 
 		end
+
+	end
+
+	describe "hidden goal page" do
+
+		before { visit hidden_path }
+
+		it { should have_selector('title', text: 'hidden goals') }
+		it { should have_selector('h1', text: "Hidden Goals") }
+		it { should have_selector('li', text: hidden_goal.title) }
+		it { should_not have_selector('li', text: goal.title) }
+
+		describe "should allow unhiding goals" do
+			it { should have_link("unhide", href: unhide_goal_path(hidden_goal)) }
+
+			it "should change hidden goals when linked clicked" do
+				expect { click_link "unhide" }.to change(Goal.where("status = 0"), :count).by(-1)
+			end
+
+		end
+
+
 
 	end
 
