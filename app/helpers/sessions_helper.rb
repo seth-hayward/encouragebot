@@ -8,7 +8,11 @@ module SessionsHelper
 	end
 
 	def correct_user
-		@user = User.find(params[:id])
+		if params[:id].nil?
+			@user = current_user
+		else
+			@user = User.find(params[:id])
+		end
 		redirect_to(root_path) unless current_user?(@user)
 	end
 
