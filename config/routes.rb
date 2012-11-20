@@ -1,6 +1,10 @@
 Encouragebot::Application.routes.draw do
   resources :users
-  resources :goals  
+  resources :goals do
+    member do      
+      get 'hide'
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :updates
 
