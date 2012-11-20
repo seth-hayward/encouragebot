@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
   	@goals = @user.goals.paginate(page: params[:page])
+  	UserMailer.welcome_email(@user).deliver  	
   end
 
   def new
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(params[:user])
 		if @user.save
+	  	UserMailer.welcome_email(@user).deliver
 			sign_in @user
 			flash[:success] = "Welcome to Encourage Bot!"			
 			redirect_to @user
