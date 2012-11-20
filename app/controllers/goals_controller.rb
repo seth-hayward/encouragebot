@@ -4,6 +4,13 @@ class GoalsController < ApplicationController
 	def index
 	end
 
+	def hide
+		@goal = current_user.goals.find_by_id(params[:id])
+		@goal.update_attribute(:status, 0)
+		flash[:success] = "The goal, #{@goal.title} was hidden."
+		redirect_to root_path
+	end
+
 	def show
 		begin		
 	  	@goal = current_user.goals.find(params[:id])
