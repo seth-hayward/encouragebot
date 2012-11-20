@@ -64,6 +64,7 @@ Goal-related todo list:
 3. On the individual goal page, we need some javascript that recomputes the "Added 42 minutes ago" line every minute
 4. Goals need a property for "Ending date" -- some goals are reoccuring, but some need to be done by a certain date.
 5. Goals need to be editable
+6. Shouldn't the root action be users#index instead of user#show? 
 
 ### Main interface
 
