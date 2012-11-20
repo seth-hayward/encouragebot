@@ -8,6 +8,7 @@ class StaticPagesController < ApplicationController
   end
 
   def help
+    @readme = load_readme
   end
 
   def about
