@@ -10,8 +10,12 @@ class UsersController < ApplicationController
 	end
 
   def show
-  	@user = User.find(params[:id])
-  	@goals = @user.goals.paginate(page: params[:page])
+  	if !signed_in?
+  		render 'static_pages/home'
+  		return
+  	end
+		@user = current_user
+  	@goals = @user.goals.where("status = 1").paginate(page: params[:page])
   end
 
   def new

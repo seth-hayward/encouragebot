@@ -5,7 +5,7 @@ describe "Authentication" do
 	subject { page }
 
 	describe "signin page" do
-		before { visit signin_path }
+		before { visit login_path }
 
 		it { should have_selector('h1', text: "Sign in") }
 		it { should have_selector('title', text: "Sign in") }
@@ -30,8 +30,8 @@ describe "Authentication" do
 
 			it { should have_selector('title', text: user.name) }
 			it { should have_link('Sign out', href: signout_path) }
-			#it { should have_link('Users', href: users_path) }
-			it { should_not have_link('Sign in', href: signin_path) }
+			it { should have_link('Hidden Goals', href: hidden_path) }
+			it { should_not have_link('Sign in', href: login_path) }
 			it { should have_link('Settings', href: edit_user_path(user)) }
 
 			describe "followed by signout" do
@@ -56,7 +56,7 @@ describe "Authentication" do
 
 					describe "submitting to the update action" do
 						before { put user_path(user) }
-						specify { response.should redirect_to(signin_path) }
+						specify { response.should redirect_to(login_path) }
 					end
 
 					describe "visiting the user index" do
@@ -69,7 +69,7 @@ describe "Authentication" do
 
 				describe "submitting to the create action" do
 					before { post goals_path }
-					specify { response.should redirect_to(signin_path) }
+					specify { response.should redirect_to(login_path) }
 				end
 
 				describe "submitting to the destroy action" do
@@ -78,7 +78,7 @@ describe "Authentication" do
 						delete goal_path(goal)
 					end
 
-					specify { response.should redirect_to(signin_path) }
+					specify { response.should redirect_to(login_path) }
 				end
 
 				describe "submitting to the edit action" do
@@ -88,12 +88,12 @@ describe "Authentication" do
 						put goal_path(goal)
 					end
 
-					specify { response.should redirect_to(signin_path) }
+					specify { response.should redirect_to(login_path) }
 				end
 
 				describe "visiting the goals controller" do
 					before { get goals_path }
-					specify { response.should redirect_to(signin_path) }
+					specify { response.should redirect_to(login_path) }
 				end
 			end
 

@@ -1,6 +1,11 @@
 <li>
 	<span class="title"><%= link_to goal.title, goal_path(goal) %></span>
 	<span class="timestamp">
-		Started <%= time_ago_in_words(goal.created_at) %> ago.
+		Started <%= time_ago_in_words(goal.created_at) %> ago. 
+		<% if goal.status==1 %>
+			<%= link_to "hide", hide_goal_path(goal) %>
+		<% else %>
+			<%= link_to "unhide", unhide_goal_path(goal) %>
+		<% end %>
 	</span>
 </li>

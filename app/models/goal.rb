@@ -1,5 +1,5 @@
 class Goal < ActiveRecord::Base
-  attr_accessible :title
+  attr_accessible :title, :status
 
   belongs_to :user
   has_many :updates

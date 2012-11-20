@@ -74,6 +74,7 @@ describe "User pages" do
 		let(:another_user) { FactoryGirl.create(:user, email: "lockout@gmail.com") }		
 		let!(:g1) { FactoryGirl.create(:goal, user: user, title: "FooWeAintGotTimeForThat") }
 		let!(:g2) { FactoryGirl.create(:goal, user: user, title: "BarBarBarBaRam") }
+		let!(:g3) { FactoryGirl.create(:goal, user: user, title: "Hidden Goal", status: 0)}
 
 		before do 
 			sign_in user
@@ -88,11 +89,25 @@ describe "User pages" do
 			it { should have_content(g1.title) }
 			it { should have_content(g2.title) }
 			it { should have_selector('h3', text: pluralize(user.goals.count, "goals")) }
+
+			describe "should not show hidden goals" do
+				it { should_not have_selector('li', text: g3.title) }
+			end
+
 		end	
 
 		describe "should not allow access to another user's profile" do
 			before { get user_path(another_user) }
 			specify { response.should redirect_to(root_path) }
+		end
+
+		describe "hide goal links" do
+			it { should have_link('hide', href: hide_goal_path(g1)) }
+
+			it "should hide goals when clicked" do
+				expect { click_link('hide') }.to change(Goal.where("status = 1"), :count).by(-1)
+			end
+
 		end
 
 	end
