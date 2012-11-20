@@ -3,18 +3,20 @@ Encouragebot::Application.routes.draw do
   resources :goals do
     member do      
       get 'hide'
+      get 'unhide'
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :updates
 
-  root to: 'users#show'
+  root to: 'users#show'  
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
   match '/signup', to: 'users#new'
   match '/login', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+  match '/hidden', to: 'goals#hidden'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
