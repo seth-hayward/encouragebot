@@ -1,0 +1,11 @@
+<% provide(:title, 'hidden goals') %>
+<h1>Hidden Goals</h1>
+<div class="row">
+	<div class="span6 offset3">
+		<% if @goals.any? %>
+			<ol class="goals">		
+				<%= render @goals %>
+			</ol>
+		<% end %>
+	</div>
+</div>
