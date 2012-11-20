@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
   	@goals = @user.goals.paginate(page: params[:page])
-  	UserMailer.welcome_email(@user).deliver  	
   end
 
   def new
