@@ -38,6 +38,7 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
+config/config.yml
 
 # moar files suggested by Michael Hartl in Ruby on Rails Tutorial
 doc/
