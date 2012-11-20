@@ -37,6 +37,17 @@ Encouragebot::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
 
-  YAML.load_file("#{Rails.root}/config/environments/secrets.yml")
+  require 'yaml'
+  CONFIG = (YAML.load_file('config/config.yml')[Rails.env] rescue {}).merge(ENV)
+
+  config.action_mailer.smtp_settings = {
+    :address          => "box865.bluehost.com",
+    :port             => 465,
+    :domain           => "encouragebot.com",
+    :authentication   => :login,
+    :user_name        => "no-reply+encouragebot.com",
+    :password         => CONFIG['password'],
+    :tls => true
+  }
 
 end
