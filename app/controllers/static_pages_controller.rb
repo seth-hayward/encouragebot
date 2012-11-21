@@ -4,10 +4,10 @@ class StaticPagesController < ApplicationController
   end
 
   def help
-    @readme = load_readme
   end
 
   def about
+    @readme = load_readme
   end
 
   def contact
