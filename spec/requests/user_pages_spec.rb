@@ -74,7 +74,7 @@ describe "User pages" do
 		let(:another_user) { FactoryGirl.create(:user, email: "lockout@gmail.com") }		
 		let!(:g1) { FactoryGirl.create(:goal, user: user, title: "FooWeAintGotTimeForThat") }
 		let!(:g2) { FactoryGirl.create(:goal, user: user, title: "BarBarBarBaRam") }
-		let!(:g3) { FactoryGirl.create(:goal, user: user, title: "Hidden Goal", status: 0)}
+		let!(:g3) { FactoryGirl.create(:goal, user: user, title: "GoodJobHidingAGoal", status: 0)}
 
 		before do 
 			sign_in user
@@ -95,6 +95,11 @@ describe "User pages" do
 			end
 
 		end	
+
+		describe "hidden goals" do
+			before { visit hidden_path }
+			it { should have_selector('li', text: g3.title) }			
+		end
 
 		describe "should not allow access to another user's profile" do
 			before { get user_path(another_user) }
