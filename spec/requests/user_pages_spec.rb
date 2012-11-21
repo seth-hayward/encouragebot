@@ -150,6 +150,11 @@ describe "User pages" do
       	it { should have_selector('title', text: user.name) }
       	it { should have_success_message("Welcome") }
       	it { should have_link('Sign out') }
+
+	      it "should have sent out a welcome email" do
+	      	ActionMailer::Base.deliveries.last.to.should == [user.email]
+	      end
+
 	    end
     end
 
