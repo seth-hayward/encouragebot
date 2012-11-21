@@ -60,6 +60,10 @@ Milestones:
 - November 19th, 2012. Added support for adding "updates" to each goal. Began reading The Well-Grounded Rubyist. Using this reading to dogfood the current encouragebot application. 
 - November 20th, 2012. Sent first email from app in dev mode and in production (at heroku). 
 
+### Test Driven Development
+
+This project utilizes TDD to continually test the site. As of November 21st, we have 150 tests in our suite. We use the Rspec and Capybara to test our application.
+
 ---
 ## TODO
 ---
