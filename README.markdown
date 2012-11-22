@@ -19,7 +19,24 @@ This is a work in progress, please excuse the dust.
 
 ### Cloning
 
-If you would like to clone the repo, please feel free to do so and let me know if you have any issues. Currently the config/database.yml file is not included in the repo as it contains sensitive database login information. I have provided the config/database/yml.example file (basic database.yml provided by `rails new`) -- you can rename this to database.yml and run `bundle exec rake db:migrate`.
+If you would like to clone the repo, please feel free to do so and let me know if you have any issues.
+
+#### Database.yml
+
+Currently the config/database.yml file is not included in the repo as it contains sensitive database login information. I have provided the config/database/yml.example file (basic database.yml provided by `rails new`) -- you can rename this to database.yml and run `bundle exec rake db:migrate`.
+
+#### config/config.yml
+
+Need to add your password to this file, using this example setup:
+
+    development:
+      password: foobar
+    test:
+      password: foobar
+    production:
+      password: foobar
+
+Then update `test.rb`, `development.rb` in `config/environments/` with your mail server information.
 
 ### Logistics
 
@@ -42,6 +59,10 @@ Milestones:
 - November 18th, 2012. Finished re-reading Ruby on Rails Tutorial. Began deviating from sample application to fit encourage bot themes.
 - November 19th, 2012. Added support for adding "updates" to each goal. Began reading The Well-Grounded Rubyist. Using this reading to dogfood the current encouragebot application. 
 - November 20th, 2012. Sent first email from app in dev mode and in production (at heroku). 
+
+### Test Driven Development
+
+This project utilizes TDD to continually test the site. As of November 21st, we have 150 tests in our suite. We use the Rspec and Capybara to test our application.
 
 ---
 ## TODO
@@ -78,3 +99,4 @@ Email-related todo list:
 
 1. Need to figure out how to send emails
 2. Need to figure out how to send emails on a schedule -- i.e. if someone hasn't added an update today, send em an email
+3. Emails need to be sent with a confirmation link that updates the user_status to confirmed

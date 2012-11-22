@@ -11,7 +11,8 @@ FactoryGirl.define do
 	end
 
 	factory :goal do
-		title	"Lorem ipsum"
+		title		"Lorem ipsum"
+		status	1
 		user
 	end
 

@@ -27,7 +27,7 @@ describe "Static pages" do
 
 	describe "About page" do
 		before { visit about_path }
-		let(:heading) { 'About' }
+		let(:heading) { 'encourage bot' }
 		let(:page_title) { 'about' }
 		it_should_behave_like "all static pages"
 	end
