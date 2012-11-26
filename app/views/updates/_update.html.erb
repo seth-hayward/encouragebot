@@ -5,5 +5,10 @@
 			Added <%= time_ago_in_words(update.created_at) %> ago.
 			<%= link_to "delete", update, method: :delete, confirm: "Delete update?" %>
 		</span>
+		<% if !update.notes.nil? %>
+		<span class="notes">
+			<%= update.notes %>
+		</span>
+		<% end %>
 	</li>
 <% end %>

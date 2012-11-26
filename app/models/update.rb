@@ -1,5 +1,5 @@
 class Update < ActiveRecord::Base
-  attr_accessible :value
+  attr_accessible :value, :notes
   belongs_to :goal
 
   validates :goal_id, presence: true
