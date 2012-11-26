@@ -175,6 +175,18 @@ input, textarea, select, .uneditable-input {
 	@include box_sizing;
 }
 
+input.update_value {
+	width: 300px;
+}
+
+textarea.update_notes {
+	height: 100px;	
+}
+
+.submit_update {
+	float: right;
+}
+
 #error_explanation {
 	color: #f00;
 	ul {
