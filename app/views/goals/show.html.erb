@@ -1,4 +1,10 @@
 <% provide(:title, @goal.title) %>
+<script>
+jQuery(document).ready(function() {
+  jQuery("span.timeago").timeago();
+});
+</script>
+
 <h1><%= @goal.title %></h1>
 <div class="row">
 	<div class="span6 offset3">
