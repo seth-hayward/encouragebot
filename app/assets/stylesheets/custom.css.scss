@@ -138,7 +138,7 @@ aside {
 		}
 		h1 {
 			font-size: 1.6em;
-			text-align: left;
+			text-align: center;
 			letter-spacing: -1px;
 			margin-bottom: 3px;
 		}
@@ -148,6 +148,7 @@ aside {
 .gravatar {
 	float: left;
 	margin-right: 10px;
+	padding-bottom: 10px;
 }
 
 /* users index */
