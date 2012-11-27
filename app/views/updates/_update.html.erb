@@ -2,7 +2,7 @@
 	<li id="<%= update.id %>">
 		<span class="title"><%= update.value %></span>
 		<span class="timestamp">
-			Added <%= time_ago_in_words(update.created_at) %> ago.
+			Added <span class="timeago" title="<%= update.created_at.to_time.iso8601 %>"><%= time_ago_in_words(update.created_at) %></span> ago.
 			<%= link_to "delete", update, method: :delete, confirm: "Delete update?" %>
 		</span>
 		<% if !update.notes.blank? %>
