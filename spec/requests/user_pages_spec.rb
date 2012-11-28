@@ -88,7 +88,7 @@ describe "User pages" do
 		describe "goals" do
 			it { should have_content(g1.title) }
 			it { should have_content(g2.title) }
-			it { should have_selector('h3', text: pluralize(user.goals.count, "goals")) }
+			it { should have_selector('h3', text: pluralize(user.goals.where("status = 1").count, "goals")) }
 
 			describe "should not show hidden goals" do
 				it { should_not have_selector('li', text: g3.title) }
