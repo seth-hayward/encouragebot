@@ -1,0 +1,16 @@
+<% provide(:title, "edit update") %>
+<h1>Edit Update</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@update) do |f| %>
+
+			<%= f.label :value %>
+			<%= f.text_field :value, :class => "update_value" %>
+			<%= f.submit "Save update", class: "btn btn-large btn-primary submit_update" %>	
+			<%= f.label :notes %>
+			<%= f.text_area :notes, :class => "update_notes" %>
+
+		<% end %>
+	</div>
+</div>

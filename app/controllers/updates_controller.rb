@@ -15,9 +15,49 @@ class UpdatesController < ApplicationController
 
 	def destroy
 		@fated_update = Update.find(params[:id])
-		@goal = current_user.goals.find(@fated_update.goal_id)
-		@fated_update.destroy
-		redirect_to goal_path(@goal)
+
+		begin
+			@goal = current_user.goals.find(@fated_update.goal_id)
+			@fated_update.destroy
+			redirect_to goal_path(@goal)
+		rescue
+			flash[:error] = "You do not have access to that update."
+			redirect_to root_path
+		end
+
+	end
+
+	def edit
+		@update = Update.find(params[:id])
+		begin
+			@goal = current_user.goals.find_by_id(@update.goal_id)
+		rescue
+			flash[:error] = "You do not have access to that update."
+			redirect_to root_path
+		end
+	end
+
+	def update
+		@update = Update.find_by_id(params[:id])
+
+		begin
+
+			@goal = current_user.goals.find_by_id(@update.goal_id)
+			if @update.update_attributes(params[:update])
+				#success
+				flash[:success] = "Update updated!"
+				redirect_to @goal
+			else
+				render 'edit'
+			end
+
+		rescue
+
+			flash[:error] = "There was an error updating this update."
+			redirect_to root_path
+			
+		end
+
 	end
 
 end
