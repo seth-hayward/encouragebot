@@ -42,7 +42,8 @@ describe "Goal pages" do
 
 	describe "individual goal page" do
 		let(:another_user) { FactoryGirl.create(:user, email: "oblivious@gmail.com") }
-		let(:another_goal) { another_user.goals.create(title: "Be more aware") }
+		let!(:another_goal) { another_user.goals.create(title: "Be more aware") }
+		let!(:another_update) { another_goal.updates.create(value: 100) }
 
 		before { visit goal_path(goal) }
 
@@ -53,6 +54,24 @@ describe "Goal pages" do
 		it "it should not be accessible by another user" do
 			get goal_path(another_goal)
 			expect { response.should redirect_to(root_path) }		
+		end
+
+		it "updates should not be deletable by other users" do
+			delete update_path(another_update)
+			expect { response.should redirect_to(root_path) }
+		end
+
+		it "edit update page should not be accessible by other users" do
+			get edit_update_path(another_update)
+			expect { respond.should redirect_to(root_path) }
+		end
+
+		describe "update method should not be hackable from curl" do
+			before { another_update.value = 105 }
+			it "should break" do
+				put update_path(another_update)
+				expect { response.should redirect_to(root_path) }			
+			end
 		end
 
 		describe "update creation" do
