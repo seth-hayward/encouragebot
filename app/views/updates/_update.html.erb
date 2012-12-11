@@ -2,7 +2,7 @@
 	<li id="<%= update.id %>">
 		<span class="title"><%= update.value %></span>
 		<span class="timestamp">
-			Added <span class="timeago" title="<%= update.created_at.to_time.iso8601 %>"><%= time_ago_in_words(update.created_at) %></span> ago at <%= update.created_at.strftime("%I:%M%p") %>.
+			Added <span class="timeago" title="<%= update.created_at.to_time.iso8601 %>"><%= time_ago_in_words(update.created_at) %></span> ago at <%= update.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%l:%M%p") %>.
 			<%= link_to "edit", edit_update_path(update) %> <%= link_to "delete", update, method: :delete, confirm: "Delete update?" %>
 		</span>
 		<% if !update.notes.blank? %>
